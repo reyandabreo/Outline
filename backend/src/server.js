@@ -1,11 +1,13 @@
 
 import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
 import notesRoutes  from './routes/notesRoutes.js';
 import { dbConnect } from './config/db.js';
-import dotenv from 'dotenv';
+import authRoutes from './routes/auth.js';
 import rateLimiter from './middleware/rateLimiter.js';
-import cors from 'cors';
-import path from 'path';
+import { protect } from './middleware/authMiddleware.js';
 
 const app = express();
 const __dirname = path.resolve();
@@ -22,7 +24,8 @@ app.use(express.json());
 // rate limiter middleware
 app.use(rateLimiter);
 
-app.use('/api/notes', notesRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/notes', protect, notesRoutes);
 
 app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
