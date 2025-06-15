@@ -29,29 +29,43 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
-      <div className="card w-full max-w-md bg-base-100 shadow-xl">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4 py-12">
+      <div className="card w-full max-w-md bg-base-100 shadow-xl p-6 animate-fade-in-up">
         <div className="card-body">
-          <h2 className="text-2xl font-bold text-center mb-4">Log In</h2>
+          <h2 className="text-3xl font-bold text-center text-primary mb-6">
+            Welcome Back 👋
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="input input-bordered w-full"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="input input-bordered w-full"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
+            <div>
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="input input-bordered w-full"
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                name="password"
+                className="input input-bordered w-full"
+                placeholder="Enter your password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
             <button
               type="submit"
               className="btn btn-primary w-full"
@@ -60,12 +74,15 @@ export default function LoginPage() {
               {loading ? 'Logging in...' : 'Log In'}
             </button>
           </form>
-          <p className="text-sm text-center mt-4">
-            Don’t have an account?{' '}
-            <a href="/signup" className="text-primary hover:underline">
-              Sign up here
-            </a>
-          </p>
+
+          <div className="text-center mt-6">
+            <p className="text-sm">
+              Don’t have an account?{' '}
+              <a href="/signup" className="text-primary font-medium hover:underline">
+                Sign up here
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

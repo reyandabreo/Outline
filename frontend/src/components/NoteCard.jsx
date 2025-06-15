@@ -1,45 +1,60 @@
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
-import api from '../lib/axios';
-import toast from 'react-hot-toast';
+import api from "../lib/axios";
+import toast from "react-hot-toast";
 
-const NoteCard = ({note, setNotes}) => {
+const NoteCard = ({ note, setNotes }) => {
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
 
-    const handleDelete = async (e, id) =>{
-        e.preventDefault();// get rid of navigation behaviour
+    if (!window.confirm("Are you sure you want to delete this note?")) return;
 
-        if(!window.confirm("Are you sure you want to delete note")) return;
-
-        try{
-            await api.delete(`/notes/${id}`);
-            setNotes((prev)=> prev.filter(note => note._id!==id));
-            toast.success("Note deleted successfully");
-        }catch(error){
-            console.log(error);
-            toast.error("Failed to delete Note");
-        }
+    try {
+      await api.delete(`/notes/${id}`);
+      setNotes((prev) => prev.filter((note) => note._id !== id));
+      toast.success("Note deleted successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete note");
     }
+  };
 
   return (
-    <Link to={`/note/${note._id}`}
-    className="card bg-base-100 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-[#2e0dc0de]"
+    <Link
+      to={`/note/${note._id}`}
+      className="group relative w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] transition-all duration-300 ease-in-out"
     >
-        <div className="card-body">
-            <h3 className="card-title text-base-content">{note.title}</h3>
-            <p className="text-base-content/70 line clamp-3">{note.content}</p>
-            <div className="card-actions justify-between items-center mt-4">
-                <span className="text-sm text-base-content/60">{formatDate(new Date(note.createdAt))}</span>
-                <div className="flex items-center gap-1">
-                    <PenSquareIcon className="size-4"></PenSquareIcon>
-                    <button className="btn btn-ghost btn-xs text-error" onClick={(e)=>handleDelete(e, note._id)}>
-                        <Trash2Icon className="size-4"></Trash2Icon>
-                    </button>
-                </div>
-            </div>
+      <div className="h-44 w-80 border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 p-5 flex flex-col justify-between">
+
+        {/* Decorative highlight */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-primary rounded-t-xl group-hover:h-1.5 transition-all duration-300"></div>
+
+        <div>
+          <h3 className="text-lg font-bold text-base-content mb-2 break-words tracking-tight">
+            {note.title}
+          </h3>
+          <p className="text-sm text-base-content/70 line-clamp-3 leading-relaxed">
+            {note.content}
+          </p>
         </div>
+
+        <div className="mt-5 flex items-center justify-between text-xs text-base-content/60">
+          <span>{formatDate(new Date(note.createdAt))}</span>
+          <div className="flex items-center gap-2">
+            <PenSquareIcon className="size-4 text-success" />
+            <button
+              onClick={(e) => handleDelete(e, note._id)}
+              className="btn btn-ghost btn-xs text-error"
+              aria-label="Delete note"
+            >
+              <Trash2Icon className="size-4" />
+            </button>
+          </div>
+        </div>
+      </div>
     </Link>
   );
-}
+};
 
 export default NoteCard;
