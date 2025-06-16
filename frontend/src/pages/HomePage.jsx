@@ -42,37 +42,36 @@ function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Section */}
   
-        <div className="flex flex-col sm:flex-row items-start gap-8 max-w-3xl mx-auto mb-16">
-          
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 max-w-3xl mx-auto mb-16 px-4 sm:px-0">
+
           {/* Icon circle */}
-          <div className="flex-shrink-0 bg-primary/20 rounded-full p-6 shadow-md mt-1">
-            <StickyNote className="w-12 h-12 text-primary" />
+          <div className="flex-shrink-0 bg-primary/20 rounded-full p-4 sm:p-6 shadow-md self-center sm:self-start">
+            <StickyNote className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
           </div>
 
           {/* Text content */}
-          <div className="text-center sm:text-left flex-1">
-            <h1 className="text-5xl font-extrabold text-primary mb-3 flex items-center justify-center sm:justify-start gap-3">
-              <Lightbulb className="w-10 h-10 text-yellow-400 animate-pulse" />
+          <div className="text-center sm:text-left flex-1 w-full">
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-primary mb-4 flex items-center justify-center sm:justify-start gap-3">
+              <Lightbulb className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400 animate-pulse" />
               Notes that Inspire
             </h1>
-            <p className="text-base-content/70 max-w-lg leading-relaxed mb-8">
-              Capture your best ideas and keep them at your fingertips — <span className="font-semibold text-primary">smart, simple, and stylish.</span> Get organized and stay inspired every day.
+
+            <p className="text-base-content/70 text-base sm:text-lg max-w-lg leading-relaxed mx-auto sm:mx-0 mb-6 sm:mb-8">
+              Capture your best ideas and keep them at your fingertips — 
+              <span className="font-semibold text-primary"> smart, simple, and stylish.</span> 
+              Get organized and stay inspired every day.
             </p>
 
-            {/* New quote box */}
-            <div className="max-w-md mx-auto sm:mx-0">
-              <div
-                className="
-                  bg-primary/10 border border-primary/40 rounded-lg px-8 py-6
-                  text-center shadow-inner select-none
-                "
-              >
-                <Lightbulb className="mx-auto mb-4 w-12 h-12 text-yellow-400 animate-pulse" />
-                <p className="italic text-base-content/70 text-lg leading-relaxed mb-6">
-                  “Great ideas often start with a single note. <span className='font-semibold text-primary'>Write yours down today and watch inspiration flow.</span>”
+            {/* Quote box */}
+            <div className="w-full sm:w-fit">
+              <div className="bg-primary/10 border border-primary/40 rounded-lg px-6 py-5 sm:px-8 sm:py-6 text-center shadow-inner select-none">
+                <Lightbulb className="mx-auto mb-4 w-10 h-10 sm:w-12 sm:h-12 text-yellow-400 animate-pulse" />
+                <p className="italic text-base-content/70 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6">
+                  “Great ideas often start with a single note. 
+                  <span className='font-semibold text-primary'> Write yours down today and watch inspiration flow.</span>”
                 </p>
-                <div className="text-primary flex items-center justify-center gap-4 text-xl animate-bounce">
-                  <Sparkles className="w-7 h-7" />
+                <div className="text-primary flex items-center justify-center gap-3 sm:gap-4 text-xl animate-bounce">
+                  <Sparkles className="w-6 h-6" />
                   <Sparkles className="w-5 h-5" />
                   <Sparkles className="w-6 h-6" />
                 </div>
@@ -80,6 +79,7 @@ function HomePage() {
             </div>
           </div>
         </div>
+
 
         {/* Loading Spinner */}
         {loading && (
