@@ -21,36 +21,12 @@ const NoteCard = ({ note, setNotes }) => {
   };
 
   return (
-    <Link
+<Link
       to={`/note/${note._id}`}
-      className="
-        group 
-        w-full 
-        sm:w-[calc(50%-0.5rem)] 
-        md:w-[calc(33.333%-0.75rem)] 
-        flex 
-        justify-center 
-        transition-all duration-300 ease-in-out
-      "
+      className="w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)]"
     >
-      <div className="
-        h-44 
-        w-full 
-        max-w-xs 
-        border 
-        border-base-300 
-        bg-base-100 
-        rounded-xl 
-        shadow-md 
-        hover:shadow-xl 
-        transform 
-        hover:-translate-y-1 
-        hover:scale-[1.01] 
-        transition-all duration-300 
-        p-5 
-        flex flex-col justify-between
-        relative
-      ">
+      <div className="mx-auto h-44 w-full max-w-xs border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 p-5 flex flex-col justify-between relative">
+        
         {/* Decorative highlight */}
         <div className="absolute top-0 left-0 w-full h-1 bg-primary rounded-t-xl group-hover:h-1.5 transition-all duration-300"></div>
 
@@ -68,7 +44,10 @@ const NoteCard = ({ note, setNotes }) => {
           <div className="flex items-center gap-2">
             <PenSquareIcon className="size-4 text-success" />
             <button
-              onClick={(e) => handleDelete(e, note._id)}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent navigating to the note page
+                handleDelete(e, note._id);
+              }}
               className="btn btn-ghost btn-xs text-error"
               aria-label="Delete note"
             >
