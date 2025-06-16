@@ -41,43 +41,40 @@ function HomePage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Section */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 max-w-5xl mx-auto mb-16 px-4 sm:px-0">
-
-          {/* Icon circle */}
-          <div className="bg-primary/20 rounded-full p-5 sm:p-6 shadow-md">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-16">
+          {/* Icon */}
+          <div className="bg-primary/20 rounded-full p-5 shadow-md mb-5 w-fit">
             <StickyNote className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
           </div>
 
-          {/* Text + Quote box */}
-          <div className="flex-1 w-full">
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-primary mb-3 flex items-center gap-3">
-              <Lightbulb className="w-7 h-7 sm:w-10 sm:h-10 text-yellow-400 animate-pulse" />
-              Notes that Inspire
-            </h1>
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-primary mb-3 flex items-center gap-3">
+            <Lightbulb className="w-7 h-7 sm:w-10 sm:h-10 text-yellow-400 animate-pulse" />
+            Notes that Inspire
+          </h1>
 
-            <p className="text-base-content/70 text-base sm:text-lg max-w-2xl leading-relaxed mb-5">
-              Capture your best ideas and keep them at your fingertips — 
-              <span className="font-semibold text-primary"> smart, simple, and stylish.</span> 
-              Get organized and stay inspired every day.
+          {/* Subtext */}
+          <p className="text-base-content/70 text-base sm:text-lg max-w-2xl leading-relaxed mb-6">
+            Capture your best ideas and keep them at your fingertips — 
+            <span className="font-semibold text-primary"> smart, simple, and stylish.</span> 
+            Get organized and stay inspired every day.
+          </p>
+
+          {/* Quote Box */}
+          <div className="bg-primary/10 border border-primary/40 rounded-lg px-6 py-5 sm:px-8 sm:py-6 shadow-inner select-none max-w-2xl">
+            <Lightbulb className="mx-auto mb-4 w-10 h-10 sm:w-12 sm:h-12 text-yellow-400 animate-pulse" />
+            <p className="italic text-base-content/70 text-base sm:text-lg leading-relaxed mb-5 text-center">
+              “Great ideas often start with a single note. 
+              <span className='font-semibold text-primary'> Write yours down today and watch inspiration flow.</span>”
             </p>
-
-            {/* Quote Box */}
-            <div className="w-full">
-              <div className="bg-primary/10 border border-primary/40 rounded-lg px-6 py-5 sm:px-8 sm:py-6 text-center shadow-inner select-none">
-                <Lightbulb className="mx-auto mb-4 w-10 h-10 sm:w-12 sm:h-12 text-yellow-400 animate-pulse" />
-                <p className="italic text-base-content/70 text-base sm:text-lg leading-relaxed mb-5">
-                  “Great ideas often start with a single note. 
-                  <span className='font-semibold text-primary'> Write yours down today and watch inspiration flow.</span>”
-                </p>
-                <div className="text-primary flex items-center justify-center gap-3 sm:gap-4 text-xl animate-bounce">
-                  <Sparkles className="w-6 h-6" />
-                  <Sparkles className="w-5 h-5" />
-                  <Sparkles className="w-6 h-6" />
-                </div>
-              </div>
+            <div className="text-primary flex items-center justify-center gap-3 sm:gap-4 text-xl animate-bounce">
+              <Sparkles className="w-6 h-6" />
+              <Sparkles className="w-5 h-5" />
+              <Sparkles className="w-6 h-6" />
             </div>
           </div>
         </div>
+
 
         {/* Loading Spinner */}
         {loading && (
