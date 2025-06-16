@@ -41,29 +41,30 @@ function HomePage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Section */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-16">
-          {/* Icon */}
-          <div className="bg-primary/20 rounded-full p-5 shadow-md mb-5 w-fit">
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-16">
+          {/* Centered Icon */}
+          <div className="mx-auto bg-primary/20 rounded-full p-5 shadow-md mb-5 w-fit">
             <StickyNote className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
           </div>
 
-          {/* Heading */}
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-primary mb-3 flex items-center gap-3">
+          {/* Centered Heading */}
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-primary mb-3 flex items-center justify-center gap-3">
             <Lightbulb className="w-7 h-7 sm:w-10 sm:h-10 text-yellow-400 animate-pulse" />
             Notes that Inspire
           </h1>
 
           {/* Subtext */}
-          <p className="text-base-content/70 text-base sm:text-lg max-w-2xl leading-relaxed mb-6">
+          <p className="text-base-content/70 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6">
             Capture your best ideas and keep them at your fingertips — 
             <span className="font-semibold text-primary"> smart, simple, and stylish.</span> 
             Get organized and stay inspired every day.
           </p>
 
           {/* Quote Box */}
-          <div className="bg-primary/10 border border-primary/40 rounded-lg px-6 py-5 sm:px-8 sm:py-6 shadow-inner select-none max-w-2xl">
+          <div className="bg-primary/10 border border-primary/40 rounded-lg px-6 py-5 sm:px-8 sm:py-6 shadow-inner select-none max-w-2xl mx-auto">
             <Lightbulb className="mx-auto mb-4 w-10 h-10 sm:w-12 sm:h-12 text-yellow-400 animate-pulse" />
-            <p className="italic text-base-content/70 text-base sm:text-lg leading-relaxed mb-5 text-center">
+            <p className="italic text-base-content/70 text-base sm:text-lg leading-relaxed mb-5">
               “Great ideas often start with a single note. 
               <span className='font-semibold text-primary'> Write yours down today and watch inspiration flow.</span>”
             </p>
@@ -74,7 +75,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-
 
         {/* Loading Spinner */}
         {loading && (
