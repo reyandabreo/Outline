@@ -25,7 +25,7 @@ const NoteCard = ({ note, setNotes }) => {
       to={`/note/${note._id}`}
       className="w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)]"
     >
-      <div className="mx-auto h-44 w-full max-w-xs border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 p-5 flex flex-col justify-between relative">
+      <div className="mx-auto h-44 w-80 max-w-xs border border-base-300 bg-base-100 rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 p-5 flex flex-col justify-between relative">
         
         {/* Decorative highlight */}
         <div className="absolute top-0 left-0 w-full h-1 bg-primary rounded-t-xl group-hover:h-1.5 transition-all duration-300"></div>
