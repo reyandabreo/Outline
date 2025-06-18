@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
+//import path from 'path';
 import notesRoutes  from './routes/notesRoutes.js';
 import { dbConnect } from './config/db.js';
 import authRoutes from './routes/auth.js';
@@ -10,7 +10,7 @@ import rateLimiter from './middleware/rateLimiter.js';
 import { protect } from './middleware/authMiddleware.js';
 
 const app = express();
-const __dirname = path.resolve();
+//const __dirname = path.resolve();
 dotenv.config();
 
 // to give backend access to frontend
@@ -27,6 +27,7 @@ app.use(rateLimiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', protect, notesRoutes);
 
+/*
 app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
 if(process.env.NODE_ENV==="production"){
@@ -34,6 +35,7 @@ if(process.env.NODE_ENV==="production"){
         res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
     });
 }
+*/
 // connect mongodb before starting server
 dbConnect().then(()=>{
     app.listen(5001,()=>{
