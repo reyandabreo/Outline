@@ -8,10 +8,24 @@ import { dbConnect } from './config/db.js';
 import authRoutes from './routes/auth.js';
 import rateLimiter from './middleware/rateLimiter.js';
 import { protect } from './middleware/authMiddleware.js';
+import helmet from "helmet";
 
 const app = express();
 const __dirname = path.resolve();
 dotenv.config();
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+      connectSrc: ["'self'", "https:"],
+      fontSrc: ["'self'", "https:", "data:"],
+    },
+  })
+);
 
 // to give backend access to frontend
 if(process.env.NODE_ENV!=="production"){
