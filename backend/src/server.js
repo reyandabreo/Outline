@@ -13,11 +13,18 @@ const __dirname = path.resolve();
 dotenv.config();
 
 // In development, allow Vite frontend
-if (process.env.NODE_ENV !== "production") {
-  app.use(cors({
-    origin: "http://localhost:5173",
-  }));
+// ...
+// Serve React build in production
+if (process.env.NODE_ENV === "production") {
+  // Correctly construct the path to the frontend dist folder
+  const frontendPath = path.join(__dirname, "frontend", "dist"); 
+  app.use(express.static(frontendPath));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
 }
+// ...
 
 // Middleware
 app.use(express.json());
