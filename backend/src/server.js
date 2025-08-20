@@ -1,9 +1,8 @@
-
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import notesRoutes  from './routes/notesRoutes.js';
+import notesRoutes from './routes/notesRoutes.js';
 import { dbConnect } from './config/db.js';
 import authRoutes from './routes/auth.js';
 import rateLimiter from './middleware/rateLimiter.js';
@@ -14,6 +13,7 @@ const app = express();
 const __dirname = path.resolve();
 dotenv.config();
 
+// Helmet with CSP (relaxed for favicon, images, etc.)
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -27,32 +27,35 @@ app.use(
   })
 );
 
-// to give backend access to frontend
-if(process.env.NODE_ENV!=="production"){
-    app.use(cors({
-        origin: "http://localhost:5173",
-    }));
+// In development, allow Vite frontend
+if (process.env.NODE_ENV !== "production") {
+  app.use(cors({
+    origin: "http://localhost:5173",
+  }));
 }
-// middleware to access req.body
+
+// Middleware
 app.use(express.json());
-// rate limiter middleware
 app.use(rateLimiter);
 
+// API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', protect, notesRoutes);
 
+// Serve React build in production
+if (process.env.NODE_ENV === "production") {
+  const frontendPath = path.join(__dirname, "../frontend/dist");
+  app.use(express.static(frontendPath));
 
-app.use(express.static(path.join(__dirname,"../frontend/dist")));
-
-if(process.env.NODE_ENV==="production"){
-    app.get("*",(req, res)=>{
-        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-    });
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
 }
 
-// connect mongodb before starting server
-dbConnect().then(()=>{
-    app.listen(5001,()=>{
-        console.log('Server is running on port 5001');
-    });
+// Start server after DB connect
+const PORT = process.env.PORT || 5001;
+dbConnect().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 });
